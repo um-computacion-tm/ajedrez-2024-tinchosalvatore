@@ -5,3 +5,8 @@ class Piece:
     def is_valid_move(self, move):
         ...
     
+    def get_color(self):
+        return self.__color__
+
+    def get_name(self):
+        return self.__name__

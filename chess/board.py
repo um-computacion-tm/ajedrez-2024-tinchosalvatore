@@ -14,7 +14,7 @@ class Board:
         self.initialize_board()
             
     def initialize_board(self):
-        # Piezas negras
+        # Posicion inicial de las piezas negras
         self.__positions__[0][0] = Rook("BLACK")
         self.__positions__[0][1] = Knight("BLACK")
         self.__positions__[0][2] = Bishop("BLACK")
@@ -26,7 +26,7 @@ class Board:
         for i in range(8):
             self.__positions__[1][i] = Pawn("BLACK")
 
-        # Piezas blancas
+        # Posicion inicial de las piezas blancas
         self.__positions__[7][0] = Rook("WHITE")
         self.__positions__[7][1] = Knight("WHITE")
         self.__positions__[7][2] = Bishop("WHITE")
@@ -38,6 +38,19 @@ class Board:
         for i in range(8):
             self.__positions__[6][i] = Pawn("WHITE")
     
+    #indica donde esta la pieza
     def get_piece(self, row, col):
         return self.__positions__[row][col]
     
+    #mueve la pieza y detecta si no hay pieza en esa posicion y si el destino esta ocupado
+    def move_piece(self, from_row, from_col, to_row, to_col):
+        piece = self.get_piece(from_row, from_col)
+        if piece is None:
+            return False #ya que no hay pieza en esa posicion
+        
+        ocupado = self.get_piece(to_row, to_col)
+        if ocupado and ocupado.__color__ == piece.__color__:
+            return False #ya que hay una pieza en esa posicion
+
+        self.__positions__[from_row][from_col] = None
+        self.__positions__[to_row][to_col] = piece
