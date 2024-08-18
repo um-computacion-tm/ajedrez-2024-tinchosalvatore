@@ -46,11 +46,18 @@ class Board:
     def move_piece(self, from_row, from_col, to_row, to_col):
         piece = self.get_piece(from_row, from_col)
         if piece is None:
-            return False #ya que no hay pieza en esa posicion
+            return None #ya que no hay pieza en esa posicion
         
         ocupado = self.get_piece(to_row, to_col)
-        if ocupado and ocupado.__color__ == piece.__color__:
+        if ocupado and ocupado.get_color() == piece.get_color():
             return False #ya que hay una pieza en esa posicion
 
         self.__positions__[from_row][from_col] = None
         self.__positions__[to_row][to_col] = piece
+        piece.move(to_row, to_col)
+
+    def show_board(self):
+        board_representation = ""
+        for row in self.__positions__:
+            board_representation += " ".join([str(piece) if piece else "." for piece in row]) + "\n"
+        return board_representation
