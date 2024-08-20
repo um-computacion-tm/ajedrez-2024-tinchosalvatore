@@ -45,13 +45,14 @@ class Board:
     #mueve la pieza y detecta si no hay pieza en esa posicion y si el destino esta ocupado
     def move_piece(self, from_row, from_col, to_row, to_col):
         piece = self.get_piece(from_row, from_col)
+        
         if piece is None:
             return None #ya que no hay pieza en esa posicion
         
         ocupado = self.get_piece(to_row, to_col)
         if ocupado and ocupado.get_color() == piece.get_color():
             return False #ya que hay una pieza en esa posicion
-
+        
         self.__positions__[from_row][from_col] = None
         self.__positions__[to_row][to_col] = piece
         piece.move(to_row, to_col)
@@ -61,3 +62,9 @@ class Board:
         for row in self.__positions__:
             board_representation += " ".join([str(piece) if piece else "." for piece in row]) + "\n"
         return board_representation
+    
+#prueba
+b = Board()
+b.initialize_board()
+b.move_piece(1, 0, 2, 0)
+print(b.show_board())

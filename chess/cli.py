@@ -2,7 +2,7 @@ from chess import Chess
 
 def main():
     chess = Chess()
-    while True:
+    while chess.is_playing():
         play(chess)
 
 def play(chess):
@@ -14,12 +14,7 @@ def play(chess):
         to_row = int(input("To Row: "))
         to_col = int(input("To Col: "))
         # :)
-        chess.move(
-            from_row,
-            from_col,
-            to_row,
-            to_col,
-        )
+        chess.move(from_row, from_col, to_row, to_col)
     except Exception as e:
         print("error", e)
 

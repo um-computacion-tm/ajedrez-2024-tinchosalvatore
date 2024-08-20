@@ -11,7 +11,7 @@ class Piece:
 
     def __str__(self): # Retorna la primera letra del nombre de la clase
         representation = self.__class__.__name__[0]
-        return representation.lower() if self.__color__ == "WHITE" else representation.upper()
+        return representation.lower() if self.__color__ == "WHITE" else representation.upper() 
 
     def is_valid_move(self, move):
         ...
