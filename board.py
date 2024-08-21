@@ -38,33 +38,55 @@ class Board:
         for i in range(8):
             self.__positions__[6][i] = Pawn("WHITE")
     
-    #indica donde esta la pieza
+    # Indica donde esta la pieza
     def get_piece(self, row, col):
         return self.__positions__[row][col]
     
-    #mueve la pieza y detecta si no hay pieza en esa posicion y si el destino esta ocupado
+    # Devuelve el color de la pieza en la posicion indicada
+    def get_color(self, row, col):
+        return self.__positions__[row][col].get_color()
+
+    # Elimina la pieza en la posicion indicada
+    def remove_piece(self, row, col):
+        self.__positions__[row][col] = None
+
+    # Captura la pieza en la posicion indicada
+    def capture_piece(self, from_row, from_col, to_row, to_col):
+        piece = self.get_piece(from_row, from_col)
+        if piece is None:
+            return None  # No piece at the start position
+
+        target_piece = self.get_piece(to_row, to_col)
+        if target_piece and target_piece.get_color() != piece.get_color():
+            self.remove_piece(to_row, to_col)  # Remove the captured piece
+            self.__positions__[from_row][from_col] = None
+            self.__positions__[to_row][to_col] = piece
+            piece.set_position(to_row, to_col)
+            return True
+        return False
+
+    # Mueve la pieza y detecta si no hay pieza en esa posicion y si el destino esta ocupado
     def move_piece(self, from_row, from_col, to_row, to_col):
         piece = self.get_piece(from_row, from_col)
         
         if piece is None:
-            return None #ya que no hay pieza en esa posicion
+            return None # Ya que no hay pieza en esa posicion
         
-        ocupado = self.get_piece(to_row, to_col)
-        if ocupado and ocupado.get_color() == piece.get_color():
-            return False #ya que hay una pieza en esa posicion
+        target_piece = self.get_piece(to_row, to_col)
+        if target_piece and target_piece.get_color() == piece.get_color():
+            return False  # Pieza en el destino es del mismo color
+
+        if self.capture_piece(from_row, from_col, to_row, to_col):
+            return True  # Pieza en el destino es del enemigo y se captura
+        
         
         self.__positions__[from_row][from_col] = None
         self.__positions__[to_row][to_col] = piece
-        piece.move(to_row, to_col)
+        piece.set_position(to_row, to_col)
 
+    
     def show_board(self):
         board_representation = ""
         for row in self.__positions__:
             board_representation += " ".join([str(piece) if piece else "." for piece in row]) + "\n"
         return board_representation
-    
-#prueba
-b = Board()
-b.initialize_board()
-b.move_piece(1, 0, 2, 0)
-print(b.show_board())
