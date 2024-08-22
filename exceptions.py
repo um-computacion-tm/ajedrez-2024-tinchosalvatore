@@ -1,8 +1,12 @@
+# Excepciones de movimientos invalidos
 class InvalidMove(Exception):
     pass
 
 class InvalidMoveNoPiece(InvalidMove):
     ...
 
-class InvalidMoveRookMove(InvalidMove):
+class InvalidMoveSameColor(InvalidMove):
+    ...
+
+class InvalidMovePieceFromOtherColor(InvalidMove):
     ...

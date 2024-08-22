@@ -1,4 +1,5 @@
 from board import Board
+from exceptions import *
 
 class Chess:
     def __init__(self):
@@ -15,7 +16,7 @@ class Chess:
                 self.change_turn()
                 return True
             self.change_turn()
-        return False
+        raise InvalidMovePieceFromOtherColor("La pieza es del enemigo")
 
     def change_turn(self):
         self.__turn__ = "BLACK" if self.__turn__ == "WHITE" else "WHITE"

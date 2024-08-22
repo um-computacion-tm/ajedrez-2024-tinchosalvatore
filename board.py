@@ -5,6 +5,7 @@ from bishop import Bishop
 from queen import Queen
 from king import King
 from pawn import Pawn
+from exceptions import *
 
 class Board:
     def __init__(self):
@@ -42,9 +43,15 @@ class Board:
     def get_piece(self, row, col):
         return self.__positions__[row][col]
     
+    #def get_empty_positions(self):
+    #    return [(i, j) for i, row in enumerate(self.__positions__) for j, piece in enumerate(row) if piece is None]
+    
     # Devuelve el color de la pieza en la posicion indicada
     def get_color(self, row, col):
-        return self.__positions__[row][col].get_color()
+        piece =  self.__positions__[row][col]
+        if piece is None:
+            return None
+        return piece.get_color()
 
     # Elimina la pieza en la posicion indicada
     def remove_piece(self, row, col):
@@ -70,23 +77,28 @@ class Board:
         piece = self.get_piece(from_row, from_col)
         
         if piece is None:
-            return None # Ya que no hay pieza en esa posicion
+            raise InvalidMoveNoPiece("No hay pieza en esa posicion") 
         
         target_piece = self.get_piece(to_row, to_col)
         if target_piece and target_piece.get_color() == piece.get_color():
-            return False  # Pieza en el destino es del mismo color
+            raise InvalidMoveSameColor("La posicion tiene una pieza del mismo color")
 
         if self.capture_piece(from_row, from_col, to_row, to_col):
             return True  # Pieza en el destino es del enemigo y se captura
         
-        
+        # Mueve la pieza
         self.__positions__[from_row][from_col] = None
         self.__positions__[to_row][to_col] = piece
         piece.set_position(to_row, to_col)
 
-    
+    # Metodo para mostrar el tablero
     def show_board(self):
-        board_representation = ""
-        for row in self.__positions__:
-            board_representation += " ".join([str(piece) if piece else "." for piece in row]) + "\n"
+        # Muestra los números de las columnas
+        board_representation = "  " + " ".join([str(i) for i in range(8)]) + "\n"
+
+        # Muestra las filas del tablero
+        for i, row in enumerate(self.__positions__):
+            # Muestra el número de la fila seguido del contenido de la fila
+            board_representation += str(i) + " " + " ".join([str(piece) if piece else "." for piece in row]) + "\n"
+
         return board_representation
