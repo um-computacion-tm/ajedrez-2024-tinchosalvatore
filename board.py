@@ -43,9 +43,6 @@ class Board:
     def get_piece(self, row, col):
         return self.__positions__[row][col]
     
-    #def get_empty_positions(self):
-    #    return [(i, j) for i, row in enumerate(self.__positions__) for j, piece in enumerate(row) if piece is None]
-    
     # Devuelve el color de la pieza en la posicion indicada
     def get_color(self, row, col):
         piece =  self.__positions__[row][col]
@@ -75,10 +72,7 @@ class Board:
     # Mueve la pieza y detecta si no hay pieza en esa posicion y si el destino esta ocupado
     def move_piece(self, from_row, from_col, to_row, to_col):
         piece = self.get_piece(from_row, from_col)
-        
-        if piece is None:
-            raise InvalidMoveNoPiece("No hay pieza en esa posicion") 
-        
+         
         target_piece = self.get_piece(to_row, to_col)
         if target_piece and target_piece.get_color() == piece.get_color():
             raise InvalidMoveSameColor("La posicion tiene una pieza del mismo color")

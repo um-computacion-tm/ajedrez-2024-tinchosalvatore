@@ -3,16 +3,19 @@ class Piece:
         self.__color__ = color
         self.__position__ = None
 
+    def __str__(self):
+        ...
+
     def set_position(self, row, col):
         self.__position__ = (row, col)
 
     def move (self, row, col):
         self.set_position(row, col)
 
-    def __str__(self):
+    def diagonal_move(self, row, col):
         ...
-        #representation = self.__class__.__name__[0]
-        #return representation.lower() if self.__color__ == "WHITE" else representation.upper()
+    def horizontal_move(self, row, col):
+        ...
 
     def is_valid_move(self, move):
         ...

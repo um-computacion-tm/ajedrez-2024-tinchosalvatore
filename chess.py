@@ -10,14 +10,20 @@ class Chess:
         return self.__turn__
     
     def move(self, from_row, from_col, to_row, to_col):
-        if self.__turn__ != self.__board__.get_color(from_row, from_col):
-            result = self.__board__.move_piece(from_row, from_col, to_row, to_col)
-            if result is not None:                
-                self.change_turn()
-                return True
+        piece_color = self.__board__.get_color(from_row, from_col)
+        
+        if piece_color is None:
+            raise InvalidMoveNoPiece("No hay pieza en esa posicion")
+        if self.__turn__ != piece_color:
+            raise InvalidMovePieceFromOtherColor("La pieza es del enemigo")
+        
+        result = self.__board__.move_piece(from_row, from_col, to_row, to_col)
+        if result:
             self.change_turn()
-        raise InvalidMovePieceFromOtherColor("La pieza es del enemigo")
-
+            return True
+        self.change_turn()
+        return False
+    
     def change_turn(self):
         self.__turn__ = "BLACK" if self.__turn__ == "WHITE" else "WHITE"
     

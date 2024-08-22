@@ -6,9 +6,9 @@ class Rook(Piece):
     
     def __str__(self):
         if self.__color__ == "WHITE":
-            return "♖"
-        else:
             return "♜"
+        else:
+            return "♖"
  
     def is_valid_move(self, move):
         from_row, from_col = self.__position__
