@@ -6,6 +6,7 @@ omit =
     venv/*
     */test*
     */__init__.py
+    */exceptions.py
 [report]
 exclude_lines =
     pragma: no cover

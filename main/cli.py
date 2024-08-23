@@ -1,5 +1,5 @@
-from chess import Chess
-from exceptions import *
+from main.chess import Chess
+from main.exceptions import *
 
 def main():
     chess = Chess()

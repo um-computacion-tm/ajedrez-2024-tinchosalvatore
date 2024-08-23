@@ -1,5 +1,5 @@
-from board import Board
-from exceptions import *
+from main.board import Board
+from main.exceptions import *
 
 class Chess:
     def __init__(self):

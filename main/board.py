@@ -1,11 +1,11 @@
-from pieces import Piece
-from rook import Rook
-from knight import Knight
-from bishop import Bishop
-from queen import Queen
-from king import King
-from pawn import Pawn
-from exceptions import *
+from main.pieces import Piece
+from main.rook import Rook
+from main.knight import Knight
+from main.bishop import Bishop
+from main.queen import Queen
+from main.king import King
+from main.pawn import Pawn
+from main.exceptions import *
 
 class Board:
     def __init__(self):
