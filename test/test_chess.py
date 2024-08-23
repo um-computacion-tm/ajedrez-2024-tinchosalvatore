@@ -1,7 +1,7 @@
 import unittest
-from chess import Chess
-from board import Board
-from exceptions import *
+from main.chess import Chess
+from main.board import Board
+from main.exceptions import *
 
 class TestChess(unittest.TestCase):
 

@@ -1,11 +1,12 @@
-from pieces import Piece
+from main.pieces import Piece
 
-class Pawn(Piece):
+class Knight(Piece):
+    
     def __init__(self, color):
         super().__init__(color)
     
     def __str__(self):
         if self.__color__ == "WHITE":
-            return "♟"
+            return "♞"
         else:
-            return "♙"
+            return "♘"

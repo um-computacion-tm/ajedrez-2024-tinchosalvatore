@@ -1,7 +1,7 @@
 import unittest
-from board import Board
-from rook import Rook
-from exceptions import *
+from main.board import Board
+from main.rook import Rook
+from main.exceptions import *
 
 class TestBoard(unittest.TestCase):
 
