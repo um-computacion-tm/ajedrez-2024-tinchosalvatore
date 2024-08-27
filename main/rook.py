@@ -1,4 +1,5 @@
 from main.pieces import Piece
+from main.exceptions import *
 
 class Rook(Piece):
     def __init__(self, color):
@@ -10,21 +11,12 @@ class Rook(Piece):
         else:
             return "♖"
  
-    def is_valid_move(self, move):
-        from_row, from_col = self.__position__
-        to_row, to_col = move
+    def is_valid_move(self, to_row, to_col):
+        from_row, from_col = self.get_position()
 
         # Verifica que la torre se mueva en linea horizontal o vertical
         if from_row != to_row and from_col != to_col:
-                return False
+                raise InvalidMoveRook("La torre no se puede mover en diagonal")
         
-        # Movimiento horizontal
-        if from_row == to_row:  
-            step = 1 if to_col > from_col else -1
-            for col in range(from_col + step, to_col, step):
-                 return True
-                 
-        elif from_col == to_col:  # Movimiento vertical
-            step = 1 if to_row > from_row else -1
-            for row in range(from_row + step, to_row, step):                 
-                return True
+        if self.horizontal_move(to_row, to_col) or self.vertical_move(to_row, to_col):
+            return True

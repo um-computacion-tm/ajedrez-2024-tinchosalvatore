@@ -10,10 +10,10 @@ def play(chess):
     try:
         print(chess.show_board())
         print("turn: ", chess.turn())
-        from_row = int(input("From row: "))
-        from_col = int(input("From col: "))
-        to_row = int(input("To Row: "))
-        to_col = int(input("To Col: "))
+        from_row = int(input("Desde fila: "))
+        from_col = int(input("Desde col: "))
+        to_row = int(input("A la fila: "))
+        to_col = int(input("A la col: "))
         # :)
         chess.move(from_row, from_col, to_row, to_col)
     

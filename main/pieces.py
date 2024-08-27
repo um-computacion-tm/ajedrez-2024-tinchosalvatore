@@ -1,24 +1,18 @@
 class Piece:
-    def __init__(self, color):
+    def __init__(self, color, row=None, col=None):
         self.__color__ = color
-        self.__position__ = None
+        self.__row__ = row
+        self.__col__ = col
 
     def __str__(self):
         ...
 
     def set_position(self, row, col):
-        self.__position__ = (row, col)
+        self.__row__ = row
+        self.__col__ = col
 
-    def move (self, row, col):
-        self.set_position(row, col)
+    def get_position(self):
+        return self.__row__, self.__col__
 
-    def diagonal_move(self, row, col):
-        ...
-    def horizontal_move(self, row, col):
-        ...
-
-    def is_valid_move(self, move):
-        ...
-    
     def get_color(self):
         return self.__color__

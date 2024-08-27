@@ -10,12 +10,17 @@ class Chess:
         return self.__turn__
     
     def move(self, from_row, from_col, to_row, to_col):
-        piece_color = self.__board__.get_color(from_row, from_col)
+        move_piece_color = self.__board__.get_color(from_row, from_col)
+        final_piece_color = self.__board__.get_color(to_row, to_col)
         
-        if piece_color is None:
+        if move_piece_color is None:
             raise InvalidMoveNoPiece("No hay pieza en esa posicion")
-        if self.__turn__ != piece_color:
+        
+        if self.__turn__ != move_piece_color:
             raise InvalidMovePieceFromOtherColor("La pieza es del enemigo")
+        
+        if move_piece_color == final_piece_color:
+            raise InvalidMoveSameColor("La posicion tiene una pieza del mismo color")
         
         result = self.__board__.move_piece(from_row, from_col, to_row, to_col)
         if result:
