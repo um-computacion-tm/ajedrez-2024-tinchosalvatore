@@ -4,11 +4,9 @@ from main.bishop import Bishop
 from main.queen import Queen
 from main.king import King
 from main.pawn import Pawn
-from main.exceptions import *
 
 class Board:
-    def __init__(self):
-        
+    def __init__(self):        
         self.__positions__ = self.__positions__ = [[None for _ in range(8)] for _ in range(8)]
             
         self.initialize_board()
@@ -37,15 +35,15 @@ class Board:
         self.__positions__[7][7] = Rook("WHITE")
         for i in range(8):
             self.__positions__[6][i] = Pawn("WHITE")
-    
-    def set_position(self, row, col):
-        self.__row__ = row
-        self.__col__ = col
         
-    # Indica donde esta la pieza
+    # getter de las piezas
     def get_piece(self, row, col):
         return self.__positions__[row][col]
     
+    # setter de las piezas
+    def set_piece(self, piece, row, col):
+        self.__positions__[row][col] = piece
+
     # Devuelve el color de la pieza en la posicion indicada
     def get_color(self, row, col):
         piece =  self.get_piece(row, col)
@@ -56,6 +54,12 @@ class Board:
     # Elimina la pieza en la posicion indicada
     def remove_piece(self, row, col):
         self.__positions__[row][col] = None
+
+    def is_square_empty(self, row, col):
+        return self.__positions__[row][col] is None
+
+    def get_square_checker(self):
+        return lambda row, col: self.is_square_empty(row, col)
 
     # Metodo para mostrar el tablero
     def show_board(self):

@@ -1,4 +1,8 @@
 # Excepciones de movimientos invalidos
+
+class InvalidInput(Exception):
+    pass
+
 class InvalidMove(Exception):
     pass
 
@@ -12,6 +16,9 @@ class InvalidMovePieceFromOtherColor(InvalidMove):
     ...
 
 class InvalidMoveNotInBoard(InvalidMove):
+    ...
+
+class InvalidMovePathOcuppied(InvalidMove):
     ...
 
 class InvalidMoveRook(InvalidMove):
