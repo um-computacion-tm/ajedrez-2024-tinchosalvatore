@@ -1,4 +1,5 @@
 from main.pieces import Piece
+#from main.movimientos import ReglasDeMovimientos
 from main.exceptions import *
 
 class Rook(Piece):

@@ -1,4 +1,3 @@
-from main.pieces import Piece
 from main.rook import Rook
 from main.knight import Knight
 from main.bishop import Bishop
@@ -39,6 +38,10 @@ class Board:
         for i in range(8):
             self.__positions__[6][i] = Pawn("WHITE")
     
+    def set_position(self, row, col):
+        self.__row__ = row
+        self.__col__ = col
+        
     # Indica donde esta la pieza
     def get_piece(self, row, col):
         return self.__positions__[row][col]
@@ -53,41 +56,6 @@ class Board:
     # Elimina la pieza en la posicion indicada
     def remove_piece(self, row, col):
         self.__positions__[row][col] = None
-
-    # Captura la pieza en la posicion indicada
-    def capture_piece(self, from_row, from_col, to_row, to_col):
-        piece = self.get_piece(from_row, from_col)
-        if piece is None:
-            return None  # No piece at the start position
-
-        target_piece = self.get_piece(to_row, to_col)
-        if target_piece and target_piece.get_color() != piece.get_color():
-            self.remove_piece(to_row, to_col)  # Remove the captured piece
-            self.__positions__[from_row][from_col] = None
-            self.__positions__[to_row][to_col] = piece
-            piece.set_position(to_row, to_col)
-            return True
-
-    # Mueve la pieza y detecta si no hay pieza en esa posicion y si el destino esta ocupado
-    def move_piece(self, from_row, from_col, to_row, to_col):
-        piece = self.get_piece(from_row, from_col)
-         
-        target_piece = self.get_piece(to_row, to_col)
-        if target_piece and target_piece.get_color() == piece.get_color():
-            raise InvalidMoveSameColor("La posicion tiene una pieza del mismo color")
-
-        if self.is_valid_move(to_row, to_col, self):
-            if self.capture_piece(from_row, from_col, to_row, to_col):
-                return True  # Pieza en el destino es del enemigo y se captura
-        
-        # Mueve la pieza
-        if self.is_valid_move(to_row, to_col, self):
-            self.__positions__[from_row][from_col] = None
-            self.__positions__[to_row][to_col] = piece
-            piece.set_position(to_row, to_col)
-            return True
-        else:
-            raise InvalidMove("Movimiento invalido")
 
     # Metodo para mostrar el tablero
     def show_board(self):
