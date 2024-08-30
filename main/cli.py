@@ -8,7 +8,6 @@ def main():
 
 def play(chess):
     try:
-        
         print(chess.show_board())
         print("turn: ", chess.turn())
 

@@ -7,3 +7,6 @@ class Piece:
 
     def get_color(self):
         return self.__color__
+    
+    def valid_moves(self, from_row, from_col, to_row, to_col):
+        ...

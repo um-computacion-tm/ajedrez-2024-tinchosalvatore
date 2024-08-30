@@ -9,6 +9,3 @@ class King(Piece):
             return "♚"
         else:
             return "♔"
-        
-        def is_valid_move(self, to_row, to_col):
-            ... 

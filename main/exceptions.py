@@ -21,20 +21,11 @@ class InvalidMoveNotInBoard(InvalidMove):
 class InvalidMovePathOcuppied(InvalidMove):
     ...
 
-class InvalidMoveRook(InvalidMove):
+class InvalidMoveVerticalHorizontal(InvalidMove):
     ...
 
-class InvalidMoveKnight(InvalidMove):
+class InvalidMoveDiagonal(InvalidMove):
     ...
 
-class InvalidMoveBishop(InvalidMove):
-    ...
-
-class InvalidMoveQueen(InvalidMove):
-    ...
-
-class InvalidMoveKing(InvalidMove):
-    ...
-
-class InvalidMovePawn(InvalidMove):
+class InvalidMoveNotAllowed(InvalidMove):
     ...

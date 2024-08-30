@@ -36,13 +36,14 @@ class Board:
         for i in range(8):
             self.__positions__[6][i] = Pawn("WHITE")
         
-    # getter de las piezas
-    def get_piece(self, row, col):
-        return self.__positions__[row][col]
     
     # setter de las piezas
     def set_piece(self, piece, row, col):
         self.__positions__[row][col] = piece
+    
+    # getter de las piezas
+    def get_piece(self, row, col):
+        return self.__positions__[row][col]
 
     # Devuelve el color de la pieza en la posicion indicada
     def get_color(self, row, col):
@@ -55,13 +56,16 @@ class Board:
     def remove_piece(self, row, col):
         self.__positions__[row][col] = None
 
-    def is_square_empty(self, row, col):
-        return self.__positions__[row][col] is None
-
-    def get_square_checker(self):
-        return lambda row, col: self.is_square_empty(row, col)
-
-    # Metodo para mostrar el tablero
+    def ocuppied_path(self, row, col):
+        for i in range(row - 1, row + 2):
+            for j in range(col - 1, col + 2):
+                if i == row and j == col:
+                    continue
+                if self.get_piece(i, j):
+                    return True
+        return False
+    
+    # Metodo para mostrar el tablero 
     def show_board(self):
         # Muestra los números de las columnas
         board_representation = "  " + " ".join([str(i) for i in range(8)]) + "\n"
