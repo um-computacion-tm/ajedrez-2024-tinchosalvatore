@@ -29,3 +29,9 @@ class InvalidMoveDiagonal(InvalidMove):
 
 class InvalidMoveNotAllowed(InvalidMove):
     ...
+
+class InvalidMoveKnight(InvalidMove):
+    ...
+
+class InvalidMovePawn(InvalidMove):
+    ...

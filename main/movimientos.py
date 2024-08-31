@@ -29,3 +29,10 @@ class ReglasDeMovimientos:
         else:
             1 if to_row > from_row else -1
             1 if to_col > from_col else -1
+
+    def knight_movement(self, from_row, from_col, to_row, to_col):
+        row_diff = abs(to_row - from_row)
+        col_diff = abs(to_col - from_col)
+        if not (row_diff == 2 and col_diff == 1) and not (row_diff == 1 and col_diff == 2):
+            raise InvalidMoveKnight("Ese movimiento del caballo no es válido")
+        return True

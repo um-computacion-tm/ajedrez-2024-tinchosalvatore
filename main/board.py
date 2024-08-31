@@ -55,16 +55,32 @@ class Board:
     # Elimina la pieza en la posicion indicada
     def remove_piece(self, row, col):
         self.__positions__[row][col] = None
-
-    def ocuppied_path(self, row, col):
-        for i in range(row - 1, row + 2):
-            for j in range(col - 1, col + 2):
-                if i == row and j == col:
-                    continue
-                if self.get_piece(i, j):
-                    return True
-        return False
     
+    def occupied_path_vertical_horizontal(self, from_row, from_col, to_row, to_col):
+        if from_row == to_row:  # Movimiento horizontal
+            start_col, end_col = sorted([from_col, to_col])
+            for col in range(start_col + 1, end_col):
+                if self.get_piece(from_row, col):
+                    return True
+        elif from_col == to_col:  # Movimiento vertical
+            start_row, end_row = sorted([from_row, to_row])
+            for row in range(start_row + 1, end_row):
+                if self.get_piece(row, from_col):
+                    return True
+    
+    def occupied_path_diagonal(self, from_row, from_col, to_row, to_col):
+        if abs(from_row - to_row) == abs(from_col - to_col):  # Movimiento diagonal
+            row_step = 1 if to_row > from_row else -1
+            col_step = 1 if to_col > from_col else -1
+            row, col = from_row + row_step, from_col + col_step
+            while row != to_row and col != to_col:
+                if self.get_piece(row, col):
+                    return True
+                row += row_step
+                col += col_step
+        return False
+
+
     # Metodo para mostrar el tablero 
     def show_board(self):
         # Muestra los números de las columnas
