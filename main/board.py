@@ -52,6 +52,14 @@ class Board:
             return None
         return piece.get_color()
 
+    def get_pawn(self, row, col):
+        piece =  self.get_piece(row, col)
+        if piece is None:
+            return None
+        if isinstance(piece, Pawn):
+            return piece
+        return None
+
     # Elimina la pieza en la posicion indicada
     def remove_piece(self, row, col):
         self.__positions__[row][col] = None

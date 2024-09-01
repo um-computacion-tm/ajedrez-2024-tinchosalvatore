@@ -31,7 +31,7 @@ class Chess:
     def ocuppied_path(self, from_row, from_col, to_row, to_col):
         return self.__board__.occupied_path_vertical_horizontal(from_row, from_col, to_row, to_col) or \
             self.__board__.occupied_path_diagonal(from_row, from_col, to_row, to_col)
-
+    
     # Mueve las piezas y las captura
     def move_piece(self, from_row, from_col, to_row, to_col):
         piece = self.__board__.get_piece(from_row, from_col)
@@ -49,11 +49,11 @@ class Chess:
             raise InvalidMoveNotAllowed("No es un movimiento válido para esa pieza")
 
         # Verificar si hay una captura diagonal para los peones
-        if isinstance(piece, Pawn) and abs(from_col - to_col) == 1:
-            if self.capture_piece(from_row, from_col, to_row, to_col):
-                self.change_turn()
-                return True
+        if not piece.is_valid_capture(from_row, from_col, to_row, to_col):
+            raise InvalidMovePawn("No es un movimiento válido para esa pieza")
+            
 
+            
         if self.ocuppied_path(from_row, from_col, to_row, to_col):
             raise InvalidMovePathOcuppied("Hay una pieza que bloquea el camino")
 
@@ -70,10 +70,10 @@ class Chess:
 
     def change_turn(self):
         self.__turn__ = "BLACK" if self.__turn__ == "WHITE" else "WHITE"
-    
+
     def show_board(self):
         return self.__board__.show_board()
-    
+
     def is_playing(self):
         return self.__playing__
     
