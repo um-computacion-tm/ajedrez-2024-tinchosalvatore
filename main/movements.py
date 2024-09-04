@@ -1,5 +1,4 @@
 from main.exceptions import *
-
 class ReglasDeMovimientos:
 
     def __init__(self):

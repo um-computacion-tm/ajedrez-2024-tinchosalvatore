@@ -1,5 +1,5 @@
 from main.pieces import Piece
-from main.movimientos import ReglasDeMovimientos
+from main.movements import ReglasDeMovimientos
 
 class King(Piece):
     def __init__(self, color):

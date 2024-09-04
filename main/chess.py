@@ -48,12 +48,6 @@ class Chess:
         if not piece.valid_moves(from_row, from_col, to_row, to_col):
             raise InvalidMoveNotAllowed("No es un movimiento válido para esa pieza")
 
-        # Verificar si hay una captura diagonal para los peones
-        if not piece.is_valid_capture(from_row, from_col, to_row, to_col):
-            raise InvalidMovePawn("No es un movimiento válido para esa pieza")
-            
-
-            
         if self.ocuppied_path(from_row, from_col, to_row, to_col):
             raise InvalidMovePathOcuppied("Hay una pieza que bloquea el camino")
 
