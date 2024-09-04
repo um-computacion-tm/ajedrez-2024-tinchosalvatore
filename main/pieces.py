@@ -10,3 +10,6 @@ class Piece:
     
     def valid_moves(self, from_row, from_col, to_row, to_col):
         ...
+    
+    def valid_moves_pawn(self, from_row, from_col, to_row, to_col):
+        ...

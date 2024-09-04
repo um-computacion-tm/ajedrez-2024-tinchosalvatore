@@ -23,35 +23,13 @@ class Pawn(Piece):
         direction = -1 if self.get_color() == "WHITE" else 1
         return direction
 
-    def pawn_jump(self, from_row, from_col, to_row, to_col):
-        direction = self.pawn_direction(from_row, from_col, to_row, to_col)
-        row_diff = abs(to_row - from_row)
-        col_diff = abs(to_col - from_col)
-        
-        if not (row_diff == 0 and col_diff == 2):
-            raise InvalidMovePawn("El peon inicialmente solo puede moverse 1 o 2 casillas")
-    
-        return 1 if to_col > from_col else -1
-
-    def vertical_pawn_move(self, from_row, from_col, to_row, to_col): 
-        direction = self.pawn_direction(from_row, from_col, to_row, to_col)
-
-        # El peón solo puede moverse en su columna actual.
-        if from_col != to_col:
-            raise InvalidMovePawn("El peón no puede moverse horizontalmente sin capturar")
-
-        # El peón puede moverse cualquier número de casillas hacia adelante.
-        if (to_row - from_row) * direction <= 0:
-            raise InvalidMovePawn("El peón solo puede moverse hacia adelante")
-
-        return True  # El movimiento es válido si no se lanza ninguna excepción.
-
-    def pawn_capture(self, from_row, from_col, to_row, to_col):
+    def diagonal_pawn_movement(self, from_row, from_col, to_row, to_col):
         direction = self.pawn_direction()
         if abs(to_col - from_col) == 1 and (to_row - from_row) == direction:
             return True
-        
-    def valid_moves(self, from_row, from_col, to_row, to_col):
+        return False
+    
+    def valid_moves_pawn(self, from_row, from_col, to_row, to_col):
         direction = self.pawn_direction()
         
         # Movimiento vertical inicial de 1 o 2 casillas
@@ -62,7 +40,7 @@ class Pawn(Piece):
                 return True  # Movimiento de dos casillas en la posición inicial
             else:
                 raise InvalidMovePawn("Movimiento inválido para el peón")
-
+            
         # Movimiento no válido
         else:
             raise InvalidMovePawn("Movimiento inválido para el peón")
