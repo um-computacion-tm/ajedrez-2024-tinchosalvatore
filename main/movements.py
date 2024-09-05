@@ -42,3 +42,6 @@ class ReglasDeMovimientos:
         if row_diff > 1 or col_diff > 1:
             raise InvalidMoveKing("El rey solo puede moverse una casilla en cualquier dirección")
         return True
+    
+    def queen_movement(self, from_row, from_col, to_row, to_col): # HACER
+        ...

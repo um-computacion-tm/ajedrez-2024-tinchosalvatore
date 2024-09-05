@@ -91,11 +91,15 @@ class Board:
 
     # Metodo para mostrar el tablero 
     def show_board(self):
-        # Muestra los números de las columnas
+        # Muestra los números de las columnas en la parte superior
         board_representation = "  " + " ".join([str(i) for i in range(8)]) + "\n"
 
-        # Muestra las filas del tablero
+        # Muestra las filas del tablero con los números a la izquierda y a la derecha
         for i, row in enumerate(self.__positions__):
-            # Muestra el número de la fila seguido del contenido de la fila
-            board_representation += str(i) + " " + " ".join([str(piece) if piece else "." for piece in row]) + "\n"
+            # Muestra el número de la fila seguido del contenido de la fila y el número al final
+            board_representation += str(i) + " " + " ".join([str(piece) if piece else "." for piece in row]) + " " + str(i) + "\n"
+
+        # Muestra los números de las columnas en la parte inferior
+        board_representation += "  " + " ".join([str(i) for i in range(8)]) + "\n"
+
         return board_representation

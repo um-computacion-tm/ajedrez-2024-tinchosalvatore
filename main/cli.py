@@ -1,5 +1,9 @@
+import os 
 from main.chess import Chess
 from main.exceptions import *
+
+def clear_screen():
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 def main():
     chess = Chess()
@@ -8,6 +12,8 @@ def main():
 
 def play(chess):
     try:
+        # clear_screen()
+        print("Ingrese exit en la primera fila para terminar el juego")
         print(chess.show_board())
         print("turn: ", chess.turn())
 
@@ -30,7 +36,6 @@ def play(chess):
         
 
         chess.move_piece(from_row, from_col, to_row, to_col)
-    
     except InvalidMove as e:
         print("Movimiento invalido: ", e)
 
