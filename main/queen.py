@@ -13,6 +13,5 @@ class Queen(Piece):
             return "♕"
         
     def valid_moves(self, from_row, from_col, to_row, to_col):
-        self.__movimientos__.vertical_horizontal_move(from_row, from_col, to_row, to_col) and \
-        self.__movimientos__.diagonal_move(from_row, from_col, to_row, to_col)
+        self.__movimientos__.queen_movement(from_row, from_col, to_row, to_col)
         return True

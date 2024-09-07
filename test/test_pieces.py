@@ -5,7 +5,7 @@ from main.knight import Knight
 from main.bishop import Bishop
 from main.queen import Queen
 from main.king import King
-from main.exceptions import InvalidMovePawn, InvalidMoveVerticalHorizontal, InvalidMoveDiagonal, InvalidMoveKnight, InvalidMoveKing
+from main.exceptions import InvalidMovePawn, InvalidMoveVerticalHorizontal, InvalidMoveDiagonal, InvalidMoveKnight, InvalidMoveKing, InvalidMoveQueen
 
 class TestChessPieces(unittest.TestCase):
 
@@ -67,7 +67,7 @@ class TestChessPieces(unittest.TestCase):
         self.assertTrue(queen.valid_moves(0, 3, 4, 7))  # Diagonal
         
         # Movimiento inválido
-        with self.assertRaises(InvalidMoveDiagonal):
+        with self.assertRaises(InvalidMoveQueen):
             queen.valid_moves(0, 3, 5, 6)
     
     def test_king_moves(self):

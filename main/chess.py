@@ -31,7 +31,11 @@ class Chess:
 
         target_piece = self.target_piece(to_row, to_col)
         if target_piece and target_piece.get_color() != piece.get_color():
-            self.__board__.remove_piece(to_row, to_col)  # Remove the captured piece
+            # Verificar si la pieza capturada es un rey ANTES de eliminarla
+            if self.king_dead(to_row, to_col):  
+                return True
+        
+            self.__board__.remove_piece(to_row, to_col)  # Remueve la pieza capturada
             self.__board__.set_piece(None, from_row, from_col)
             self.__board__.set_piece(piece, to_row, to_col)
             return True
@@ -117,17 +121,16 @@ class Chess:
     
     def end_game(self):
         self.__playing__ = False  # Cambiar el estado del juego a "no en curso"
-        print("El usuario terminó el juego.")
 
     def king_dead(self, to_row, to_col):
         # Verifica si la pieza capturada es un rey
-        target_piece = self.target_piece(to_row, to_col)
-        if isinstance(target_piece, King):
+        target_piece_king = self.target_piece(to_row, to_col)
+        if isinstance(target_piece_king, King):
             # Cambiar el estado del juego a "no en curso"
             self.end_game()
             
             # Obtener el color del rey capturado y del ganador
-            king_color = target_piece.get_color()
+            king_color = target_piece_king.get_color()
             winning_color = "BLACK" if king_color == "WHITE" else "WHITE"
             
             # Mostrar el mensaje de fin del juego

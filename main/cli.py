@@ -11,8 +11,8 @@ def main():
         play(chess)
 
 def play(chess):
+    #clear_screen()
     try:
-        # clear_screen()
         print("Ingrese exit en la primera fila para terminar el juego")
         print(chess.show_board())
         print("turn: ", chess.turn())
@@ -20,6 +20,7 @@ def play(chess):
         from_row_input = input("Desde fila: ").strip().lower()
         if from_row_input == "exit":
             chess.end_game()  # Asegúrate de tener un método para terminar el juego
+            print("El usuario terminó el juego.")
             return
         
         try:
@@ -36,6 +37,7 @@ def play(chess):
         
 
         chess.move_piece(from_row, from_col, to_row, to_col)
+
     except InvalidMove as e:
         print("Movimiento invalido: ", e)
 
@@ -44,7 +46,6 @@ def play(chess):
         
     except Exception as e:
         print("Sucedio un error inesperado", e) 
-
 
 if __name__ == '__main__':
     main()

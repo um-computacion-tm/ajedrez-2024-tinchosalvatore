@@ -38,3 +38,6 @@ class InvalidMovePawn(InvalidMove):
 
 class InvalidMoveKing(InvalidMove):
     ...
+
+class InvalidMoveQueen(InvalidMove):
+    ...
