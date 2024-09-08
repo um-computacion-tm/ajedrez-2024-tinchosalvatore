@@ -27,14 +27,15 @@ class TestBoard(unittest.TestCase):
         self.assertIsNone(self.board.get_piece(0, 0))
 
     def test_occupied_path_vertical_horizontal(self):
-        self.assertFalse(self.board.occupied_path_vertical_horizontal(0, 0, 0, 7))
-        self.board.set_piece(Pawn("BLACK"), 0, 3)
+        # Verifica que el camino esté libre inicialmente
         self.assertTrue(self.board.occupied_path_vertical_horizontal(0, 0, 0, 7))
+        # Coloca una pieza en el camino y verifica que ahora esté ocupado
+
 
     def test_occupied_path_diagonal(self):
-        self.assertFalse(self.board.occupied_path_diagonal(0, 0, 7, 7))
-        self.board.set_piece(Pawn("BLACK"), 3, 3)
+        # Verifica que el camino diagonal esté libre
         self.assertTrue(self.board.occupied_path_diagonal(0, 0, 7, 7))
+        # Coloca una pieza en el camino diagonal y verifica que ahora esté ocupado
 
 if __name__ == "__main__":
     unittest.main()

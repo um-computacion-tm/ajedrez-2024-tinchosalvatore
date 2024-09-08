@@ -75,6 +75,7 @@ class Board:
             for row in range(start_row + 1, end_row):
                 if self.get_piece(row, from_col):
                     return True
+        return False
     
     def occupied_path_diagonal(self, from_row, from_col, to_row, to_col):
         if abs(from_row - to_row) == abs(from_col - to_col):  # Movimiento diagonal
