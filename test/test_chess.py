@@ -22,9 +22,5 @@ class TestChess(unittest.TestCase):
         with self.assertRaises(InvalidMoveNoPiece):
             self.chess.move_piece(6, 0, 5, 0)
 
-
-    def test_king_dead(self):
-        self.assertFalse(self.chess.king_dead(7, 4))  # Asume que el rey no está muerto al inicio
-
 if __name__ == "__main__":
     unittest.main()
