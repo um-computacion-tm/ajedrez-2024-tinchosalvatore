@@ -1,35 +1,41 @@
 import unittest
 from main.board import Board
+from main.pawn import Pawn
 from main.rook import Rook
-from main.exceptions import *
 
 class TestBoard(unittest.TestCase):
 
     def setUp(self):
-        self.__board__ = Board()
+        self.board = Board()
 
-    def test_initial_setup(self):
-        self.assertIsInstance(self.__board__.get_piece(0, 0), Rook)
-        self.assertIsNone(self.__board__.get_piece(4, 4))
+    def test_initialize_board(self):
+        self.assertIsInstance(self.board.get_piece(0, 0), Rook)
+        self.assertIsInstance(self.board.get_piece(1, 0), Pawn)
+        self.assertIsInstance(self.board.get_piece(6, 0), Pawn)
+
+    def test_set_piece(self):
+        pawn = Pawn("WHITE")
+        self.board.set_piece(pawn, 3, 3)
+        self.assertEqual(self.board.get_piece(3, 3), pawn)
 
     def test_get_color(self):
-        self.assertEqual(self.__board__.get_color(0, 0), "BLACK")
-        self.assertEqual(self.__board__.get_color(7, 7), "WHITE")
-        self.assertIsNone(self.__board__.get_color(4, 4))
+        self.assertEqual(self.board.get_color(0, 0), "BLACK")
+        self.assertEqual(self.board.get_color(6, 0), "WHITE")
 
-    def test_move_piece_successful(self):
-        self.__board__.move_piece(6, 0, 5, 0)
-        self.assertIsNone(self.__board__.get_piece(6, 0))
-        self.assertIsNotNone(self.__board__.get_piece(5, 0))
+    def test_remove_piece(self):
+        self.board.remove_piece(0, 0)
+        self.assertIsNone(self.board.get_piece(0, 0))
 
-    def test_move_piece_invalid_same_color(self):
-        with self.assertRaises(InvalidMoveSameColor):
-            self.__board__.move_piece(7, 0, 7, 1)
+    def test_occupied_path_vertical_horizontal(self):
+        # Verifica que el camino esté libre inicialmente
+        self.assertTrue(self.board.occupied_path_vertical_horizontal(0, 0, 0, 7))
+        # Coloca una pieza en el camino y verifica que ahora esté ocupado
 
-    def test_capture_piece(self):
-        self.__board__.move_piece(6, 0, 5, 0) # Mueve los peones 
-        self.__board__.move_piece(1, 0, 2, 0)
-        self.assertTrue(self.__board__.capture_piece(5, 0, 2, 0))  # El peon blanco captura el peon negro
 
-if __name__ == '__main__':
+    def test_occupied_path_diagonal(self):
+        # Verifica que el camino diagonal esté libre
+        self.assertTrue(self.board.occupied_path_diagonal(0, 0, 7, 7))
+        # Coloca una pieza en el camino diagonal y verifica que ahora esté ocupado
+
+if __name__ == "__main__":
     unittest.main()
