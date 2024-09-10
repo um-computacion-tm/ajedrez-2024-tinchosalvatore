@@ -7,10 +7,12 @@ class ReglasDeMovimientos:
     def vertical_move(self, from_row, from_col, to_row, to_col):
         if from_col != to_col:
             1 if to_row > from_row else -1
-    
+
     def horizontal_move(self, from_row, from_col, to_row, to_col):
         if from_row != to_row:
-            1 if to_col > from_col else -1
+            raise InvalidMoveHorizontal("El movimiento horizontal solo puede ocurrir en la misma fila")
+        direction = 1 if to_col > from_col else -1
+        return direction
 
     def vertical_horizontal_move(self, from_row, from_col, to_row, to_col):
         if from_row != to_row and from_col != to_col:
@@ -33,9 +35,9 @@ class ReglasDeMovimientos:
         col_diff = self.col_difference_move(from_col, to_col)
         if row_diff != col_diff:
             raise InvalidMoveDiagonal("El alfil solo puede moverse en diagonal")
-        else:
-            1 if to_row > from_row else -1
-            1 if to_col > from_col else -1
+        direction_row = 1 if to_row > from_row else -1
+        direction_col = 1 if to_col > from_col else -1
+        return direction_row, direction_col
 
     def knight_movement(self, from_row, from_col, to_row, to_col):
         row_diff_knigth = self.row_difference_move(from_row, to_row)
