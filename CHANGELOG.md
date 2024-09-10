@@ -30,3 +30,12 @@ Added the special behavior of every piece, but the match doesnt finish and the c
 
 ### Changed
 - Changed how general pieces movement was done, by adding a new general method for them
+
+## V[1.2] - 2024-09-09
+### Added
+
+Killing the king finishes the match
+
+### Fixed
+- Fixed queen movement that wasnt able to do diagonal moves
+- Fixed pawns, now they cant capture pieces in vertical
