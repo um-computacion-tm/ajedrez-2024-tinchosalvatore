@@ -44,14 +44,12 @@ class ReglasDeMovimientos:
         col_diff_knigth = self.col_difference_move(from_col, to_col)
         if not (row_diff_knigth == 2 and col_diff_knigth == 1) and not (row_diff_knigth == 1 and col_diff_knigth == 2):
             raise InvalidMoveKnight("Ese movimiento del caballo no es válido")
-        return True
     
     def king_movement(self, from_row, from_col, to_row, to_col):
         row_diff_king = self.row_difference_move(from_row, to_row)
         col_diff_king = self.col_difference_move(from_col, to_col)
         if row_diff_king > 1 or col_diff_king > 1:
             raise InvalidMoveKing("El rey solo puede moverse una casilla en cualquier dirección")
-        return True
     
     def queen_movement(self, from_row, from_col, to_row, to_col): 
         # Verifica movimiento diagonal
