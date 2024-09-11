@@ -13,14 +13,15 @@ class Chess:
     def turn(self):
         return self.__turn__
 
-    def piece(self, from_row, from_col): # Metodo que obtiene una pieza
+    def piece(self, from_row, from_col): # This method returns the piece in the position that is indicated
         piece = self.__board__.get_piece(from_row, from_col)
         return piece
     
-    def target_piece(self, to_row, to_col):
+    def target_piece(self, to_row, to_col): # This method returns the piece in the position that a piece is moving to
         return self.__board__.get_piece(to_row, to_col)
 
-    # Captura la pieza en la posicion indicada
+    # This method captures the piece in the indicated position
+    # It uses remove_piece and set_piece methods to remove the captured piece and set the new piece in its position
     def capture_piece(self, from_row, from_col, to_row, to_col):
         piece = self.piece(from_row, from_col)
         if piece is None:
@@ -31,16 +32,17 @@ class Chess:
 
         target_piece = self.target_piece(to_row, to_col)
         if target_piece and target_piece.get_color() != piece.get_color():
-            # Verificar si la pieza capturada es un rey ANTES de eliminarla
+            # Verifies if the captured piece is a king BEFORE removing it
             if self.king_dead(to_row, to_col):  
                 return True
         
-            self.__board__.remove_piece(to_row, to_col)  # Remueve la pieza capturada
+            self.__board__.remove_piece(to_row, to_col) 
             self.__board__.set_piece(None, from_row, from_col)
             self.__board__.set_piece(piece, to_row, to_col)
             return True
         return False
     
+    # Special method for pawn capture
     def pawn_capture(self, from_row, from_col, to_row, to_col):
         piece = self.piece(from_row, from_col)
         if isinstance(piece, Pawn):

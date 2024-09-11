@@ -10,9 +10,8 @@ class ReglasDeMovimientos:
 
     def horizontal_move(self, from_row, from_col, to_row, to_col):
         if from_row != to_row:
-            raise InvalidMoveHorizontal("El movimiento horizontal solo puede ocurrir en la misma fila")
-        direction = 1 if to_col > from_col else -1
-        return direction
+            direction = 1 if to_col > from_col else -1
+            return direction
 
     def vertical_horizontal_move(self, from_row, from_col, to_row, to_col):
         if from_row != to_row and from_col != to_col:
@@ -52,19 +51,19 @@ class ReglasDeMovimientos:
             raise InvalidMoveKing("El rey solo puede moverse una casilla en cualquier dirección")
     
     def queen_movement(self, from_row, from_col, to_row, to_col): 
-        # Verifica movimiento diagonal
+        # Verifies the diagonal movement
         try:
             self.diagonal_move(from_row, from_col, to_row, to_col)
             return True
         except InvalidMoveDiagonal:
-            pass  # Si no es un movimiento diagonal, continúa verificando los otros movimientos
+            pass  # If there isn't a diagonal movement, continue checking other movements
 
-        # Verifica movimiento vertical u horizontal
+        # Verifies the vertical or horizontal movement
         try:
             self.vertical_horizontal_move(from_row, from_col, to_row, to_col)
             return True
         except InvalidMoveVerticalHorizontal:
-            pass  # Si no es un movimiento en línea recta, lanza excepción
+            pass  # If there isn't a vertical or horizontal movement, it raises an exception
 
-        # Si no es ni diagonal ni en línea recta, el movimiento es inválido
+        # If the movement is neither diagonal nor vertical or horizontal, it is invalid, so it raises an exception
         raise InvalidMoveQueen("La reina solo puede moverse en línea recta o en diagonal")

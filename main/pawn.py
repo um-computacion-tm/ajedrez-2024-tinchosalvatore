@@ -27,7 +27,6 @@ class Pawn(Piece):
         direction = self.pawn_direction()
         if abs(to_col - from_col) == 1 and (to_row - from_row) == direction:
             return True
-        return False
     
     def valid_moves_pawn(self, from_row, from_col, to_row, to_col):
         direction = self.pawn_direction()
@@ -40,7 +39,3 @@ class Pawn(Piece):
                 return True  # Movimiento de dos casillas en la posición inicial
             else:
                 raise InvalidMovePawn("Movimiento inválido para el peón")
-            
-        # Movimiento no válido
-        else:
-            raise InvalidMovePawn("Movimiento inválido para el peón")
