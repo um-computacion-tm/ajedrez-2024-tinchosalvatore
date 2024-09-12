@@ -1,6 +1,8 @@
 from main.pieces import Piece
 from main.movements import ReglasDeMovimientos
 
+#Knight heredates from Piece class the color and str method and calls the knight_movement method for the validating move method
+
 class Knight(Piece):
     
     def __init__(self, color):

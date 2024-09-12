@@ -1,6 +1,8 @@
 from main.pieces import Piece
 from main.movements import ReglasDeMovimientos
 
+# Rook heredates from Piece class the color and str method and calls the vertical_horizontal_move method for the validating move method
+
 class Rook(Piece):
     def __init__(self, color):
         super().__init__(color)

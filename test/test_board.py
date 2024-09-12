@@ -30,6 +30,7 @@ class TestBoard(unittest.TestCase):
         # Verifica que el camino esté libre inicialmente
         self.assertTrue(self.board.occupied_path_vertical_horizontal(0, 0, 0, 7))
         # Coloca una pieza en el camino y verifica que ahora esté ocupado
+        self.assertTrue(self.board.occupied_path_vertical_horizontal(0, 0, 7, 0))
 
 
     def test_occupied_path_diagonal(self):
@@ -37,5 +38,31 @@ class TestBoard(unittest.TestCase):
         self.assertTrue(self.board.occupied_path_diagonal(0, 0, 7, 7))
         # Coloca una pieza en el camino diagonal y verifica que ahora esté ocupado
 
+    def test_get_pawn(self):
+        # Crea un peón y colócalo en la posición (1, 1)
+        pawn = Pawn("WHITE")
+        self.board.set_piece(pawn, 1, 1)
+        # Verifica que get_pawn devuelva el peón en la posición (1, 1)
+        self.assertEqual(self.board.get_pawn(1, 1), pawn)
+        # Verifica que get_pawn devuelva None en una posición sin peón
+        self.assertIsNone(self.board.get_pawn(0, 0))
+        self.assertIsNone(self.board.get_pawn(2, 2))
+
+    def test_show_board(self):
+        expected_output = (
+            "  0 1 2 3 4 5 6 7\n"
+            "0 ♖ ♘ ♗ ♕ ♔ ♗ ♘ ♖ 0\n"
+            "1 ♙ ♙ ♙ ♙ ♙ ♙ ♙ ♙ 1\n"
+            "2 . . . . . . . . 2\n"
+            "3 . . . . . . . . 3\n"
+            "4 . . . . . . . . 4\n"
+            "5 . . . . . . . . 5\n"
+            "6 ♟ ♟ ♟ ♟ ♟ ♟ ♟ ♟ 6\n"
+            "7 ♜ ♞ ♝ ♛ ♚ ♝ ♞ ♜ 7\n"
+            "  0 1 2 3 4 5 6 7\n"
+        )
+        
+        self.assertEqual(self.board.show_board().strip(), expected_output.strip())
+        
 if __name__ == "__main__":
     unittest.main()

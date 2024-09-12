@@ -2,6 +2,10 @@ from main.pieces import Piece
 from main.movements import ReglasDeMovimientos
 
 class Bishop(Piece):
+
+    #As all pieces will do, bishop heredates from Piece class the color and str method
+    #It also calls the diagonal_movement method for the validating move method
+
     def __init__(self, color):
         super().__init__(color)
         self.__movimientos__ = ReglasDeMovimientos()

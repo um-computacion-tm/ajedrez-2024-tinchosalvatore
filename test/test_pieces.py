@@ -1,11 +1,12 @@
 import unittest
+from main.pieces import Piece
 from main.pawn import Pawn
 from main.rook import Rook
 from main.knight import Knight
 from main.bishop import Bishop
 from main.queen import Queen
 from main.king import King
-from main.exceptions import InvalidMovePawn, InvalidMoveVerticalHorizontal, InvalidMoveDiagonal, InvalidMoveKnight, InvalidMoveKing, InvalidMoveQueen
+from main.exceptions import InvalidMovePawn, InvalidMoveVerticalHorizontal, InvalidMoveDiagonal, InvalidMoveKnight, InvalidMoveKing, InvalidMoveQueen, InvalidMoveHorizontal
 
 class TestChessPieces(unittest.TestCase):
 
@@ -20,7 +21,11 @@ class TestChessPieces(unittest.TestCase):
         # Movimiento inicial de dos pasos
         self.assertTrue(white_pawn.valid_moves_pawn(6, 0, 4, 0))
         self.assertTrue(black_pawn.valid_moves_pawn(1, 0, 3, 0))
-        
+
+        # Movimiento válido en diagonal, por mas de que no sea permitido, testea la capacidad de hacer un movimiento diagonal
+        self.assertTrue(white_pawn.diagonal_pawn_movement(6, 0, 5, 1))
+        self.assertTrue(black_pawn.diagonal_pawn_movement(1, 0, 2, 1))
+
         # Movimiento inválido
         with self.assertRaises(InvalidMovePawn):
             white_pawn.valid_moves_pawn(6, 0, 3, 0)

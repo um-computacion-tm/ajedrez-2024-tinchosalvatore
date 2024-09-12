@@ -39,3 +39,17 @@ Killing the king finishes the match
 ### Fixed
 - Fixed queen movement that wasnt able to do diagonal moves
 - Fixed pawns, now they cant capture pieces in vertical
+
+## V[2.0] - Version final! - 2024-09-09
+### Added
+
+- Chess is fully functional now!!!
+- Exceptions were made for every possible case and prints easy messages for the users
+- Tests were added for every class
+- Added easy documentation in english, explains every method very detailed
+### Fixed
+- Fixed all movements
+- Fixed tests
+
+### Removed
+- All the trash code was removed ;)
