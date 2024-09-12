@@ -1,6 +1,8 @@
 from main.pieces import Piece
 from main.movements import ReglasDeMovimientos
 
+#Queen heredates from Piece class the color and str method and calls the queen_movement method for the validating move method
+
 class Queen(Piece):
     def __init__(self, color):
         super().__init__(color)

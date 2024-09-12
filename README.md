@@ -4,10 +4,10 @@ Legajo 63181
 
 ## Reglamento
 El juego es un ajedrez completo, excepto porque no hay jaque mate, ni enroque.
-La forma de que termine la partida es caputrar el rey contrario
+La forma de que termine la partida es capturar el rey contrario
 
 ## Como ejecutar
-El juego no cuenta con interfaz gráfica, por lo que se puede ejecutar desde la línea de comandos.
+El juego no cuenta con interfaz gráfica, por lo que se ejecuta desde la línea de comandos.
 
 ## Ejecucion usando Docker
 Para ejecutar el juego usando Docker, antes debes instalar Docker en tu computadora.
@@ -23,6 +23,14 @@ $ sudo docker buildx build -t ajedrez --no-cache .
 ```
 $ sudo docker run -i ajedrez
 ```
+
+# :books: Documentación
+## CHANGELOG
+El changelog contiene una lista de las versiones del proyecto, con los cambios, eliminaciones y adiciones realizados en cada versión.
+
+## Comentarios en el codigo
+En el codigo se pueden encontrar comentarios en inglés, para ayudar a los usuarios a entender mejor el funcionamiento del juego.
+
 # :hammer_and_wrench: Herramientas de correccion utilizadas en este proyecto
 
 ## CircleCI

@@ -1,4 +1,4 @@
-# Excepciones de movimientos invalidos
+#This classes are used to raise exceptions in the cli 
 
 class InvalidInput(Exception):
     pass
