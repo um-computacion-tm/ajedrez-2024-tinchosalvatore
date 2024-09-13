@@ -42,10 +42,8 @@ class Chess:
 
         target_piece = self.target_piece(to_row, to_col)
         if target_piece and target_piece.get_color() != piece.get_color():
-            # Verifies if the captured piece is a king BEFORE removing it
-            if self.king_dead(to_row, to_col):  
-                return 
-        
+        #If checks if the captured piece is a from the other team, then removes it
+
             self.__board__.remove_piece(to_row, to_col) #Removes the captured piece
             self.__board__.set_piece(None, from_row, from_col) 
             self.__board__.set_piece(piece, to_row, to_col) #Sets the new piece
