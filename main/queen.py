@@ -6,7 +6,7 @@ from main.movements import ReglasDeMovimientos
 class Queen(Piece):
     def __init__(self, color):
         super().__init__(color)
-        self.__movimientos__ = ReglasDeMovimientos()
+        self.__movimientos_queen__ = ReglasDeMovimientos()
     
     def __str__(self):
         if self.__color__ == "WHITE":
@@ -15,5 +15,5 @@ class Queen(Piece):
             return "♕"
         
     def valid_moves(self, from_row, from_col, to_row, to_col):
-        self.__movimientos__.queen_movement(from_row, from_col, to_row, to_col)
+        self.__movimientos_queen__.queen_movement(from_row, from_col, to_row, to_col)
         return True
