@@ -5,15 +5,15 @@ from main.movements import ReglasDeMovimientos
 
 class Knight(Piece):
     
-    def __init__(self, color):
-        super().__init__(color)
-        self.__movimientos_knight__ = ReglasDeMovimientos()
-    
     def __str__(self):
         if self.__color__ == "WHITE":
             return "♞"
         else:
             return "♘"
+
+    def __init__(self, color):
+        super().__init__(color)
+        self.__movimientos_knight__ = ReglasDeMovimientos()
         
     def valid_moves(self, from_row, from_col, to_row, to_col):
         self.__movimientos_knight__.knight_movement(from_row, from_col, to_row, to_col)
