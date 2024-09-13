@@ -9,7 +9,7 @@ class Pawn(Piece):
 
     def __init__(self, color):
         super().__init__(color)
-        self.__movimientos__ = ReglasDeMovimientos()
+        self.__movimientos_pawn__ = ReglasDeMovimientos()
     
     def __str__(self):
         if self.__color__ == "WHITE":

@@ -7,7 +7,7 @@ class Knight(Piece):
     
     def __init__(self, color):
         super().__init__(color)
-        self.__movimientos__ = ReglasDeMovimientos()
+        self.__movimientos_knight__ = ReglasDeMovimientos()
     
     def __str__(self):
         if self.__color__ == "WHITE":
@@ -16,5 +16,5 @@ class Knight(Piece):
             return "♘"
         
     def valid_moves(self, from_row, from_col, to_row, to_col):
-        self.__movimientos__.knight_movement(from_row, from_col, to_row, to_col)
+        self.__movimientos_knight__.knight_movement(from_row, from_col, to_row, to_col)
         return True
