@@ -7,7 +7,7 @@ WORKDIR /ajedrez-2024-tinchosalvatore
 
 RUN pip install -r requirements.txt
 
-CMD ["sh", "-c", "coverage run -m unittest && coverage report -m && python main.py"]
+CMD ["sh", "-c", "coverage run -m unittest && coverage report -m && python3 -m main.cli"]
 
 # docker buildx build -t ajedrez --no-cache .
 # docker run -i ajedrez
