@@ -2,9 +2,6 @@ import os
 from main.chess import Chess
 from main.exceptions import *
 
-def clear_screen(): #This method clears the screen after every move
-    os.system('cls' if os.name == 'nt' else 'clear')
-
 def main():
     chess = Chess()
     while chess.is_playing():

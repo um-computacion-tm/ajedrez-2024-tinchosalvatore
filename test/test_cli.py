@@ -58,5 +58,13 @@ class TestCLI(unittest.TestCase):
                 output = fake_out.getvalue()
                 self.assertIn("Tablero", output)
 
+    def test_invalid_second_col_input(self):
+        with patch('builtins.input', side_effect=['1', 'a', '2', '2']):
+            with patch('sys.stdout', new=io.StringIO()) as fake_out:
+                from main.cli import play
+                play(self.chess)
+                output = fake_out.getvalue()
+                self.assertIn("Ingrese numeros", output)
+
 if __name__ == '__main__':
     unittest.main()
